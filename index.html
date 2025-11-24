@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Электронный учебник</title>
+  <style>
+    /* ===========================================
+   ACADEMIC TEXTBOOK — MULTICOLOR DARK UI
+   =========================================== */
+
+:root {
+  /* DARK neutral palette */
+  --bg: #1f232a;
+  --bg-secondary: #272c34;
+  --bg-soft: #2d333d;
+  --border: #3a404c;
+
+  /* Text */
+  --text: #e8ecf3;
+  --text-soft: #c1c5ce;
+  --text-light: #9ca2ad;
+
+  /* MULTICOLOR palette */
+  --blue: #3a7afe;
+  --blue-light: #74a7ff;
+
+  --cyan: #22c8e6;
+  --teal: #38d6ac;
+
+  --purple: #905cff;
+  --pink: #ff63a2;
+
+  --orange: #ffa53b;
+  --yellow: #ffd44a;
+
+  --green: #47cc6b;
+
+  --accent: var(--blue);
+  --accent-hover: #1c63f4;
+
+  --radius: 12px;
+  --header-h: 68px;
+
+  --page-pad: 22px;
+  --max-width: 1150px;
+  --article-width: 880px;
+
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.62;
+}
+
+/* ============================= HEADER ============================= */
+
+.topbar {
+  background: #1b1f25;
+  border-bottom: 1px solid var(--border);
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-pad);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand img {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--yellow);
+}
+
+/* nav */
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  margin: 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: .25s ease;
+}
+
+nav a:hover {
+  color: var(--pink);
+  border-bottom-color: var(--pink);
+}
+
+/* ============================= HERO ============================= */
+
+.hero {
+  max-width: var(--max-width);
+  margin: 32px auto 18px;
+  padding: 0 var(--page-pad);
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 30px;
+}
+
+.hero .blurb {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.hero h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--blue-light);
+}
+
+.search {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.search input {
+  flex: 1;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 15px;
+}
+
+.search button {
+  padding: 13px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--purple);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.search button:hover {
+  background: #7a4ce8;
+}
+
+.stats {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* ============================= GRID ============================= */
+
+.grid {
+  max-width: var(--max-width);
+  margin: 26px auto 40px;
+  padding: 0 var(--page-pad);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: .25s;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue-light);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.thumb {
+  height: 110px;
+
+  background: linear-gradient(
+    135deg,
+    var(--blue) 0%,
+    var(--cyan) 45%,
+    var(--teal) 100%
+  );
+
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.thumb span {
+  font-size: 38px;
+  opacity: .95;
+  color: var(--text);
+}
+
+.card h3 {
+  margin: 16px;
+  font-size: 16px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+/* ============================= LESSON ============================= */
+
+.lesson-article {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+#lesson-inner thead th {
+  background: var(--cyan);
+  color: var(--text);
+}
+
+/* ============================= TASKBAR ============================= */
+
+#taskbar {
+  display: none;
+  gap: 14px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+}
+
+#taskbar .taskbtn {
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-soft);
+  transition: .2s;
+}
+
+#taskbar .taskbtn:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+/* ============================= FOOTER ============================= */
+
+footer {
+  margin-top: auto;
+  padding: 18px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: #1b1e24;
+  color: var(--text-light);
+}
+
+/* ============================= RESPONSIVE ============================= */
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  #taskbar .taskbtn { flex: 1 1 calc(50% - 10px); }
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="images/1.jpg" alt="logo" onerror="this.style.visibility='hidden'">
+      <h1>Электронный учебник</h1>
+    </div>
+    <nav>
+      <a href="#/">Главная</a>
+      <a href="#/extra/content">Оглавление</a>
+      <a href="#/extra/introduction">Введение</a>
+      <a href="#/extra/references">Литература</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="hero">
+      <div class="blurb">
+        <h2>Все уроки — в одном клике</h2>
+        <p>По умолчанию показываем только «Теорию» (включая Мақсаты, Бағалау, Құралдар, Қауіпсіздік, Қысқаша теориялық мәлімет). Остальные разделы — отдельными страницами.</p>
+        <div class="search">
+          <input id="q" type="search" placeholder="Поиск по названиям уроков…" oninput="applyFilter()">
+          <button onclick="clearFilter()">Сброс</button>
+        </div>
+        <div class="stats"><span id="stat"></span></div>
+      </div>
+    </div>
+    <main><div id="grid" class="grid"></div></main>
+  </section>
+
+  <section id="lesson-view">
+    <div class="page">
+      <div class="breadcrumb">
+        <a href="#/">Главная</a> / <span id="crumb-title">Урок</span>
+      </div>
+      <article class="lesson-article">
+        <div id="lesson-content"></div>
+        <div id="taskbar" aria-label="Переход к заданиям"></div>
+      </article>
+    </div>
+  </section>
+
+  <footer>&copy; Разработчики Акерке и Гульсум</footer>
+
+  <script>
+    let DATA=null, FLAT=[], filter='';
+
+    const byId = (id)=>document.getElementById(id);
+
+    function buildGrid(){
+      const box = byId('grid'); box.innerHTML='';
+      const items = FLAT.filter(x => (x.title||'').toLowerCase().includes(filter));
+      byId('stat').textContent = `Показано уроков: ${items.length} из ${FLAT.length}`;
+      items.forEach((item) => {
+        const card = document.createElement('div');
+        card.className='card';
+        card.onclick = () => location.hash = `#/lesson/${item.id}/section/theory`;
+
+        const th = document.createElement('div');
+        th.className='thumb';
+        const s = document.createElement('span');
+        s.textContent = item.number;
+        th.appendChild(s);
+        card.appendChild(th);
+
+        const h3 = document.createElement('h3');
+        h3.textContent = item.title || `Урок ${item.number}`;
+        card.appendChild(h3);
+
+        box.appendChild(card);
+      });
+    }
+
+    function applyFilter(){ filter = byId('q').value.trim().toLowerCase(); buildGrid(); }
+    function clearFilter(){ byId('q').value=''; filter=''; buildGrid(); }
+
+    function flattenLessons(){
+      const arr=[];
+      (DATA.units||[]).forEach(unit=>{
+        (unit.subtopics||[]).forEach((lsn,idx)=>{
+          arr.push({ id: arr.length, number: lsn.number || (idx+1), title: lsn.title || `Урок ${(idx+1)}`, content: lsn.content || ''});
+        });
+      });
+      FLAT=arr;
+    }
+
+    function stripInlineBackgrounds(root){
+      root.querySelectorAll('[style]').forEach(el=>{
+        const s = (el.getAttribute('style')||'').toLowerCase();
+        if (s.includes('background')){
+          el.style.background = 'transparent';
+          el.style.backgroundColor = 'transparent';
+        }
+      });
+      root.querySelectorAll('mark').forEach(el=>{ el.style.background='transparent'; el.style.color='inherit'; });
+    }
+
+    const SECTION_RULES = [
+      { key:'theory',    btn:'📘 Теория',                class:'theory',
+        patterns:[/^\s*теория/i, /^\s*қысқаша теори/i, /^\s*қысқаша теориялық/i, /📖/i] },
+      { key:'practice',  btn:'📝 Практикалық жұмыс',     class:'practice',
+        patterns:[/практикалық жұмыс/i, /практика/i] },
+      { key:'levels',    btn:'✅ Деңгейлік тапсырмалар', class:'levels',
+        patterns:[/деңгейлік тапсырмалар/i, /уровнев/i] },
+      { key:'matching',  btn:'🔗 Сәйкестендіру тапсырмасы', class:'matching',
+        patterns:[/сәйкестендіру тапсырм/i, /соответств/i] },
+      { key:'tests',     btn:'🧩 Тест тапсырмалары',     class:'tests',
+        patterns:[/тест тапсырмалары/i, /тест/i] },
+      { key:'descriptors', btn:'📋 Дескрипторлар',       class:'descriptors',
+        patterns:[/дескриптор/i] },
+    ];
+
+    // Всё, что относится к теории: эти заголовки сливаются в один "theory"
+    const THEORY_GROUP_PATTERNS = [
+      /🎯\s*мақсаты/i, /мақсаты/i,
+      /📊\s*бағалау\s*өлшемшарт/i, /бағалау\s*өлшемшарт/i,
+      /🛠️?\s*құралдар(?:\s*мен\s*материалдар)?/i,
+      /⚠️\s*қауіпсіздік\s*ережелери?/i, /қауіпсіздік\s*ережелери?/i,
+      /📖\s*қысқаша\s*теориялық/i, /қысқаша\s*теориялық\s*мәл/i,
+      /^\s*теория/i
+    ];
+
+    const SECTION_SLICES = {}; // { [lessonId]: { key: {label, html} } }
+
+    function addIdsToHeadings(inner){
+      const hs = inner.querySelectorAll('h1, h2, h3, h4');
+      // Mark starts for non-theory sections
+      hs.forEach(h => {
+        const t = (h.textContent||'').trim();
+        for(const rule of SECTION_RULES.filter(r=>r.key!=='theory')){
+          if(rule.patterns.some(rx=>rx.test(t))){
+            h.id = 'sec-'+rule.key;
+          }
+        }
+      });
+      // Find theory start: earliest heading matching THEORY_GROUP_PATTERNS
+      let theoryStart = null;
+      for(const h of hs){
+        const t = (h.textContent||'').trim();
+        if(THEORY_GROUP_PATTERNS.some(rx=>rx.test(t))){ theoryStart = h; break; }
+      }
+      if(theoryStart) theoryStart.id = 'sec-theory';
+    }
+
+    function extractSectionSlices(lessonId){
+      const inner = document.getElementById('lesson-inner');
+      if(!inner) return {};
+      const map = {};
+
+      addIdsToHeadings(inner);
+
+      // Collect anchors in desired order
+      const order = ['theory','practice','levels','matching','tests','descriptors'];
+      const anchors = order.map(k => ({k, el: inner.querySelector('#sec-'+k)}))
+                           .filter(x => x.el);
+
+      // Build THEORY slice: from theoryStart to before first of any other anchors
+      const theoryAnchor = anchors.find(a=>a.k==='theory');
+      if(theoryAnchor){
+        const nextOther = anchors.find(a=>a.k!=='theory');
+        const frag = document.createElement('div');
+        let node = theoryAnchor.el;
+        while(node && node !== (nextOther?.el || null)){
+          frag.appendChild(node.cloneNode(true));
+          node = node.nextSibling;
+        }
+        map['theory'] = {label: SECTION_RULES.find(r=>r.key==='theory').btn, html: frag.innerHTML};
+      }
+
+      // Build other slices: each from its heading to next heading in anchors order
+      for(let i=0;i<anchors.length;i++){
+        const {k, el} = anchors[i];
+        if(k==='theory') continue;
+        const end = anchors.slice(i+1).map(a=>a.el)[0] || null;
+        const frag = document.createElement('div');
+        let node = el;
+        while(node && node !== end){
+          frag.appendChild(node.cloneNode(true));
+          node = node.nextSibling;
+        }
+        map[k] = {label: SECTION_RULES.find(r=>r.key===k).btn, html: frag.innerHTML};
+      }
+
+      SECTION_SLICES[lessonId] = map;
+      return map;
+    }
+
+    function buildTaskbarFromSlices(lessonId){
+      const bar = byId('taskbar');
+      bar.innerHTML='';
+      const map = SECTION_SLICES[lessonId] || {};
+      const keys = ['theory','practice','levels','matching','tests','descriptors'].filter(k=>map[k]);
+      if(keys.length===0){ bar.style.display='none'; return; }
+      keys.forEach(k=>{
+        const rule = SECTION_RULES.find(r=>r.key===k);
+        const btn = document.createElement('button');
+        btn.className = `taskbtn ${rule.class}`;
+        btn.type = 'button';
+        btn.textContent = rule.btn;
+        btn.onclick = () => location.hash = `#/lesson/${lessonId}/section/${k}`;
+        bar.appendChild(btn);
+      });
+      bar.style.display='flex';
+    }
+
+    function renderSectionView(id, key){
+      const item = FLAT.find(x=>x.id===id);
+      if(!item){ location.hash='#/'; return; }
+
+      // Prepare slices if needed
+      if(!SECTION_SLICES[id]){
+        byId('lesson-content').innerHTML = `<div id="lesson-inner">${item.content||''}</div>`;
+        stripInlineBackgrounds(document.getElementById('lesson-inner'));
+        extractSectionSlices(id);
+      }
+      const map = SECTION_SLICES[id] || {};
+      // Fallback: if theory requested but missing, show full lesson
+      const desired = map[key] || null;
+
+      byId('crumb-title').textContent = `${item.title}${desired ? ' — ' + (SECTION_RULES.find(r=>r.key===key)?.btn || '') : ''}`;
+
+      if(desired){
+        byId('lesson-content').innerHTML = `<div id="lesson-inner">${desired.html}</div>`;
+      }else{
+        byId('lesson-content').innerHTML = `<div id="lesson-inner">${item.content||''}</div>`;
+        stripInlineBackgrounds(document.getElementById('lesson-inner'));
+        extractSectionSlices(id);
+      }
+
+      // Always show the taskbar in section view for navigation
+      buildTaskbarFromSlices(id);
+
+      byId('home').style.display='none';
+      byId('lesson-view').style.display='block';
+      window.scrollTo(0,0);
+    }
+
+    function renderLesson(id){
+      // legacy full view (not used by default now)
+      const item = FLAT.find(x=>x.id===id);
+      if(!item){ location.hash='#/'; return; }
+      byId('crumb-title').textContent = item.title;
+      byId('lesson-content').innerHTML = `<div id="lesson-inner">${item.content||''}</div>`;
+      stripInlineBackgrounds(document.getElementById('lesson-inner'));
+      extractSectionSlices(id);
+      buildTaskbarFromSlices(id);
+      byId('home').style.display='none';
+      byId('lesson-view').style.display='block';
+      window.scrollTo(0,0);
+    }
+
+    function openExtra(key){
+      const extra = (DATA.extras && DATA.extras[key]) || null;
+      if(!extra){ alert('Раздел пуст'); return; }
+      byId('crumb-title').textContent = extra.title || 'Раздел';
+      byId('lesson-content').innerHTML =
+        `<div id="lesson-inner">${extra.content||''}</div>`;
+      stripInlineBackgrounds(document.getElementById('lesson-inner'));
+      const tb = byId('taskbar'); if(tb) tb.style.display='none';
+
+      byId('home').style.display='none';
+      byId('lesson-view').style.display='block';
+      window.scrollTo(0,0);
+    }
+
+    function router(){
+      const h = location.hash || '#/';
+      if(h.includes('/lesson/') && h.includes('/section/')){
+        const parts = h.split('/');
+        const id = parseInt(parts[2],10);
+        const key = parts[4];
+        renderSectionView(id, key);
+      } else if(h.includes('/lesson/')){
+        const id = parseInt(h.split('/')[2],10);
+        // открываем теорию по умолчанию
+        location.hash = `#/lesson/${id}/section/theory`;
+      } else if (h.startsWith('#/extra/')){
+        const key = h.split('/')[2]; openExtra(key);
+      } else {
+        byId('lesson-view').style.display='none';
+        byId('home').style.display='block';
+        window.scrollTo(0,0);
+      }
+    }
+    window.addEventListener('hashchange', router);
+
+    fetch('single_lessons.json')
+      .then(r=>r.json())
+      .then(j=>{ DATA=j; flattenLessons(); buildGrid(); router(); })
+      .catch(e=>{ console.error(e); alert('Не удалось загрузить данные'); });
+  </script>
+</body>
+</html>
